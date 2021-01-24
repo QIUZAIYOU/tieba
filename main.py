@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 import os
-import requests
+import requests as r
 import hashlib
 import time
 import copy
@@ -29,6 +29,7 @@ SIGN_DATA = {
 # VARIABLE NAME
 COOKIE = "Cookie"
 BDUSS = "BDUSS"
+SCKEY = "SCKEY"
 EQUAL = r'='
 EMPTY_STR = r''
 TBS = 'tbs'
@@ -42,7 +43,7 @@ UTF8 = "utf-8"
 SIGN = "sign"
 KW = "kw"
 
-s = requests.Session()
+s = r.Session()
 
 
 def get_tbs(bduss):
@@ -167,8 +168,14 @@ def client_sign(bduss, tbs, fid, kw):
     return res
 
 
+def scsend(SCKEY,message):
+    sc_url='http://sc.ftqq.com/{}.send?text={}'.format(SCKEY,message)
+    r.get(url=sc_url)
+
+    
 def main():
     b = os.environ['BDUSS'].split('#')
+    SCKEY = os.environ['SCKEY']
     for n, i in enumerate(b):
         logger.info("开始签到第" + str(n) + "个用户")
         tbs = get_tbs(i)
@@ -176,7 +183,11 @@ def main():
         for j in favorites:
             client_sign(i, tbs, j["id"], j["name"])
         logger.info("完成第" + str(n) + "个用户签到")
+        message = "完成第" + str(n) + "个用户签到"
+        scsend(SCKEY,message)
     logger.info("所有用户签到结束")
+    message = "所有用户签到结束"
+    scsend(SCKEY,message)
 
 
 if __name__ == '__main__':
