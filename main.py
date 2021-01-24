@@ -84,6 +84,8 @@ def get_favorite(bduss):
         res = s.post(url=LIKIE_URL, data=data, timeout=5).json()
     except Exception as e:
         logger.error("获取关注的贴吧出错" + e)
+        message = "贴吧云签到：获取关注的贴吧出错" + e
+        scsend(SCKEY,message)
         return []
     returnData = res
     if 'forum_list' not in returnData:
@@ -115,6 +117,8 @@ def get_favorite(bduss):
             res = s.post(url=LIKIE_URL, data=data, timeout=5).json()
         except Exception as e:
             logger.error("获取关注的贴吧出错" + e)
+            message = "贴吧云签到：获取关注的贴吧出错" + e
+            scsend(SCKEY,message)
             continue
         if 'forum_list' not in res:
             continue
@@ -183,10 +187,8 @@ def main():
         for j in favorites:
             client_sign(i, tbs, j["id"], j["name"])
         logger.info("完成第" + str(n) + "个用户签到")
-        message = "完成第" + str(n) + "个用户签到"
-        scsend(SCKEY,message)
     logger.info("所有用户签到结束")
-    message = "所有用户签到结束"
+    message = "百度云签到:所有用户签到结束"
     scsend(SCKEY,message)
 
 
