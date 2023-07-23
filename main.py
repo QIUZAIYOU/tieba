@@ -168,7 +168,7 @@ def client_sign(bduss, tbs, fid, kw):
     res = s.post(url=SIGN_URL, data=data, timeout=5).json()
     return res
 
-server_chen_key = ENV['SERVERCHENKEY']
+server_chen_key = os.environ['SERVERCHENKEY']
 def sc_send(text, desp='', key = server_chen_key):
     postdata = urllib.parse.urlencode({
         'text': text,
