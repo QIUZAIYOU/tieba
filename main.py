@@ -5,7 +5,8 @@ import hashlib
 import time
 import copy
 import logging
-
+import urllib.parse
+import urllib.request
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -189,7 +190,7 @@ def main():
             client_sign(i, tbs, j["id"], j["name"])
         logger.info("完成第" + str(n) + "个用户签到")
     logger.info("所有用户签到结束")
-    sc_send("Github｜TieBaSign｜所有用户签到结束")
+    sc_send("Github｜tieba｜所有用户签到结束")
 
 if __name__ == '__main__':
     main()
