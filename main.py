@@ -190,7 +190,10 @@ def main():
             client_sign(i, tbs, j["id"], j["name"])
         logger.info("完成第" + str(n) + "个用户签到")
     logger.info("所有用户签到结束")
-    sc_send("Github｜tieba｜所有用户签到结束")
+    try:
+        sc_send("Github｜TieBaSign｜所有用户签到结束")
+    except Exception as e:
+        logger.error(f"server酱发送失败:{e}")
 
 if __name__ == '__main__':
     main()
