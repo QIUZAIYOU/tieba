@@ -167,7 +167,7 @@ def client_sign(bduss, tbs, fid, kw):
     if res.error_code == "0":
         resMsg = res.text
     else:
-        resMsg = res.error_msg}
+        resMsg = res.error_msg
     logger.info(f"开始签到贴吧：{kw}丨{resMsg}")
     return res
 
