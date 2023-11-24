@@ -165,9 +165,9 @@ def client_sign(bduss, tbs, fid, kw):
     resMsg = ''
     res = s.post(url=SIGN_URL, data=data, timeout=5).json()
     if res["error_code"] == "0":
-        resMsg = res["forum"]["forum"]["window_conf"]["text"]
+        resMsg = res[0]["forum"][0]["window_conf"][0]["text"]
     else:
-        resMsg = res["error_msg"]
+        resMsg = res[0]["error_msg"]
     logger.info(f"开始签到贴吧：{kw}丨{resMsg}")
     return res
 
@@ -178,7 +178,7 @@ def main():
         tbs = get_tbs(i)
         favorites = get_favorite(i)
         for j in favorites:
-            client_sign(i, tbs, j["id"], j["name"])
+            client_sign(i, tbs, j[0]["id"], j[0]["name"])
         logger.info("完成第" + str(n) + "个用户签到")
     logger.info("所有用户签到结束")
 
