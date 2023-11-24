@@ -165,13 +165,14 @@ def client_sign(bduss, tbs, fid, kw):
     resMsg = ''
     res = s.post(url=SIGN_URL, data=data, timeout=5).json()
     if res["error_code"] == "0":
-        resMsg = res["forum"]["window_conf"]["text"]
+        resMsg = res["forum"][0]["window_conf"]["text"]
     else:
         resMsg = res["error_msg"]
     logger.info(f"开始签到贴吧：{kw}丨{resMsg}")
     return res
 
 def main():
+    doneList = []
     b = os.environ['BDUSS'].split('#')
     for n, i in enumerate(b):
         logger.info("开始签到第" + str(n) + "个用户")
