@@ -164,10 +164,10 @@ def client_sign(bduss, tbs, fid, kw):
     data = encodeData(data)
     resMsg = ''
     res = s.post(url=SIGN_URL, data=data, timeout=5).json()
-    if res.error_code == "0":
-        resMsg = res.text
+    if res["error_code"] == "0":
+        resMsg = res["forum"]["forum"]["window_conf"]["text"]
     else:
-        resMsg = res.error_msg
+        resMsg = res["error_msg"]
     logger.info(f"开始签到贴吧：{kw}丨{resMsg}")
     return res
 
