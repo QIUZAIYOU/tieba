@@ -168,7 +168,7 @@ def client_sign(bduss, tbs, fid, kw):
         resMsg = res["forum"][0]["window_conf"]["text"]
     else:
         resMsg = res["error_msg"]
-    logger.info(f"开始签到贴吧：{kw}丨{resMsg}")
+    logger.info(f"开始签到贴吧：{kw}({fid})丨{resMsg}")
     return res
 
 def main():
@@ -180,10 +180,9 @@ def main():
         favorites = get_favorite(i)
         for j in favorites:
             try:
-                logger.info(j["id"])
                 client_sign(i, tbs, int(j["id"]), j["name"])
             except ValueError:
-                logger.info(f"错误：'id'的值不是整数。值: {j['id']}")
+                logger.info(f"Error: The value of 'id' is not a valid integer. Value: {j['id']}")
         logger.info("完成第" + str(n) + "个用户签到")
     logger.info("所有用户签到结束")
 
