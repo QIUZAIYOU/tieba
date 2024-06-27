@@ -144,7 +144,6 @@ def get_favorite(bduss):
         else:
             t.append(i)
     logger.info("获取关注的贴吧结束")
-    logger.info(t)
     return t
 
 
@@ -180,7 +179,11 @@ def main():
         tbs = get_tbs(i)
         favorites = get_favorite(i)
         for j in favorites:
-            client_sign(i, tbs, int(j["id"]), j["name"])
+            try:
+                logger.info(j["id"])
+                client_sign(i, tbs, int(j["id"]), j["name"])
+            except ValueError:
+                logger.info(f"错误：'id'的值不是整数。值: {j['id']}")
         logger.info("完成第" + str(n) + "个用户签到")
     logger.info("所有用户签到结束")
 
