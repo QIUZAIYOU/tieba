@@ -183,7 +183,7 @@ def main():
                 client_sign(i, tbs, int(j["id"]), j["name"])
             except ValueError:
                 logger.info(f"Error: The value of 'id' is not a valid integer. Value: {j['id']}")
-        logger.info("完成第" + str(n) + "个用户签到")
+        logger.info("完成第" + str(n+1) + "个用户签到")
     logger.info("所有用户签到结束")
 
 if __name__ == '__main__':
