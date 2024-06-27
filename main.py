@@ -144,6 +144,7 @@ def get_favorite(bduss):
         else:
             t.append(i)
     logger.info("获取关注的贴吧结束")
+    logger.info(t)
     return t
 
 
