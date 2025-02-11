@@ -23,5 +23,5 @@ jobs:
           BDUSS: ${{ secrets.BDUSS }}
           MEOW: ${{ secrets.MEOW }}
         run: python main.py
-      - name: 'MewO'
-        run: python mewo.py
+      - name: 'MEOW'
+        run: python meow.py
