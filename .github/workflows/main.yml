@@ -23,3 +23,5 @@ jobs:
           BDUSS: ${{ secrets.BDUSS }}
           SERVERCHAN: ${{ secrets.SERVERCHAN }}
         run: python main.py
+      - name: 'mewO'
+        run: python mewo.py
