@@ -1,9 +1,10 @@
+import os
 from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
-meow_key = os.environ['MEOW']
-API_BASE_URL = f'http://api.chuckfang.com/{meow_key}/'
+meow_name = os.environ['MEOW_NAME']
+API_BASE_URL = f'http://api.chuckfang.com/{meow_name}/'
 
 def meow_send(title='', message=''):
     encoded_title = quote(title)
@@ -16,4 +17,4 @@ def meow_send(title='', message=''):
     except (URLError, HTTPError) as e:
         result = f'Error occurred: {e}'
     return result
-  meow_send(title='Github｜tieba', message='所有用户签到结束')
+meow_send(title='Github｜Tieba', message='所有用户签到结束')
